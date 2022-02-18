@@ -1,13 +1,19 @@
 package ru.example.wsrfood.ui.core
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.viewbinding.ViewBinding
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collect
 import ru.example.wsrfood.ui.MainActivity
 import ru.example.wsrfood.viewmodel.core.BaseViewModel
+import ru.example.wsrfood.viewmodel.core.Event
 
 abstract class BaseFragment<T : BaseViewModel, VB : ViewBinding>
     : Fragment() {
@@ -46,8 +52,22 @@ abstract class BaseFragment<T : BaseViewModel, VB : ViewBinding>
         setupViews()
     }
 
-    override fun onStart() {
-        super.onStart()
+    protected fun <T> observeResponse(
+        flow: StateFlow<Event<T>>,
+        collectFun: (Event<T>) -> Unit
+    ) {
+        lifecycleScope.launchWhenStarted {
+            flow.collect {
+                collectFun(it)
+            }
+        }
+    }
+
+    protected fun showErrorDialog() {
+        MaterialAlertDialogBuilder(requireContext())
+            .setMessage("Произошла ошибка")
+            .setPositiveButton("Продолжить", null)
+            .show()
     }
 
     override fun onDestroyView() {

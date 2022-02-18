@@ -5,4 +5,5 @@
     <color name="red">#FA4A0C</color>
     <color name="gray">#EAEAEA</color>
     <color name="light_gray">#F3F3F3</color>
+    <color name="transparent">@android:color/transparent</color>
 </resources>

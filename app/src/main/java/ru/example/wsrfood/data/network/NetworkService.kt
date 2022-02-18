@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit
 
 object NetworkService {
 
-    private const val BASE_URL = "https://api.openweathermap.org/data/2.5/"
+    private const val BASE_URL = "http://food.madskill.ru/"
 
     private fun provideMoshi(): Moshi = Moshi.Builder()
         .addLast(KotlinJsonAdapterFactory())
