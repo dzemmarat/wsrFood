@@ -3,6 +3,8 @@ package ru.example.wsrfood.ui.splash
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import ru.example.wsrfood.R
 import ru.example.wsrfood.databinding.FragmentSplashBinding
 import ru.example.wsrfood.extensions.gone
 import ru.example.wsrfood.extensions.isOnline
@@ -37,10 +39,10 @@ class SplashFragment : BaseFragment<SplashViewModel, FragmentSplashBinding>() {
             when (it.status) {
                 Status.SUCCESS -> {
                     if (!viewModel.isVersionsEquals.value) {
-                        viewModel.insertVersionsInDb()
                         viewModel.getDishes()
+                        viewModel.insertVersionsInDb()
                     } else {
-
+                        findNavController().navigate(R.id.action_splashFragment_to_onBoardingFragmentContainer)
                     }
                 }
                 Status.ERROR -> {

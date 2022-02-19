@@ -9,5 +9,37 @@
         android:id="@+id/splashFragment"
         android:name="ru.example.wsrfood.ui.splash.SplashFragment"
         android:label="SplashFragment"
-        tools:layout="@layout/fragment_splash"/>
+        tools:layout="@layout/fragment_splash">
+        <action
+            android:id="@+id/action_splashFragment_to_onBoardingFragmentContainer"
+            app:destination="@id/onBoardingFragmentContainer"
+            app:launchSingleTop="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/onBoardingFragmentContainer"
+        android:name="ru.example.wsrfood.ui.onnoarding.OnBoardingFragmentContainer"
+        android:label="OnBoardingFragmentContainer"
+        tools:layout="@layout/fragment_on_boardind_container">
+        <action
+            android:id="@+id/action_onBoardingFragmentContainer_to_signIn"
+            app:destination="@id/signIn" />
+        <action
+            android:id="@+id/action_onBoardingFragmentContainer_to_signUp"
+            app:destination="@id/signUp" />
+    </fragment>
+    <fragment
+        android:id="@+id/signIn"
+        android:name="ru.example.wsrfood.ui.signin.SignIn"
+        android:label="SignIn"
+        tools:layout="@layout/fragment_sign_in"/>
+    <fragment
+        android:id="@+id/signUp"
+        android:name="ru.example.wsrfood.ui.signup.SignUp"
+        android:label="SignUp"
+        tools:layout="@layout/fragment_sign_up">
+        <action
+            android:id="@+id/action_signUp_to_signIn"
+            app:destination="@id/signIn" />
+    </fragment>
 </navigation>

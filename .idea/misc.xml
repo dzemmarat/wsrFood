@@ -3,8 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/wsrFood/app/src/main/res/drawable/bg_button_onboarding.xml" value="0.24572368421052632" />
+        <entry key="..\:/wsrFood/app/src/main/res/drawable/bg_red_button.xml" value="0.2546052631578947" />
+        <entry key="..\:/wsrFood/app/src/main/res/drawable/bg_sign_in.xml" value="0.24572368421052632" />
         <entry key="..\:/wsrFood/app/src/main/res/drawable/bg_splash_round.xml" value="0.2546052631578947" />
         <entry key="..\:/wsrFood/app/src/main/res/layout/activity_main.xml" value="0.2444078947368421" />
+        <entry key="..\:/wsrFood/app/src/main/res/layout/fragment_on_boardind_container.xml" value="0.2444078947368421" />
+        <entry key="..\:/wsrFood/app/src/main/res/layout/fragment_onboarding_one.xml" value="0.2355263157894737" />
+        <entry key="..\:/wsrFood/app/src/main/res/layout/fragment_onboarding_two.xml" value="0.2355263157894737" />
+        <entry key="..\:/wsrFood/app/src/main/res/layout/fragment_sign_in.xml" value="0.2355263157894737" />
+        <entry key="..\:/wsrFood/app/src/main/res/layout/fragment_sign_up.xml" value="0.2355263157894737" />
         <entry key="..\:/wsrFood/app/src/main/res/layout/fragment_splash.xml" value="0.2444078947368421" />
       </map>
     </option>

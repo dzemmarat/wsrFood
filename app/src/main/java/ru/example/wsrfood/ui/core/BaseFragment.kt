@@ -63,9 +63,9 @@ abstract class BaseFragment<T : BaseViewModel, VB : ViewBinding>
         }
     }
 
-    protected fun showErrorDialog() {
+    protected fun showErrorDialog(message: String = "Произошла ошибка") {
         MaterialAlertDialogBuilder(requireContext())
-            .setMessage("Произошла ошибка")
+            .setMessage(message)
             .setPositiveButton("Продолжить", null)
             .show()
     }

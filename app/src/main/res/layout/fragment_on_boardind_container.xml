@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/red">
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:saveEnabled="false"/>
+
+    <ru.tinkoff.scrollingpagerindicator.ScrollingPagerIndicator
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/indicator"
+        android:layout_gravity="bottom|center_horizontal"
+        app:spi_dotSize="10dp"
+        app:spi_dotSelectedColor="@color/white"
+        app:spi_dotColor="@color/color_indicator"
+        android:layout_marginBottom="40dp"/>
+
+</FrameLayout>
