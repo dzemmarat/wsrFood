@@ -25,17 +25,9 @@ class SignUpViewModel : BaseViewModel() {
 
             _authRequest.value = Event.loading()
 
-
-            api.postRegister(RegisterRequest(email, password, login))
-                .enqueue(object : Callback<TokenResponse> {
-                    override fun onResponse(call: Call<TokenResponse>, response: Response<TokenResponse>) {
-                        _authRequest.value = Event.success(response.body())
-                    }
-
-                    override fun onFailure(call: Call<TokenResponse>, t: Throwable) {
-                        _authRequest.value = Event.error(t.message)
-                    }
-                })
+            postRequestWithMutableFlow(_authRequest) {
+                api.postRegister(RegisterRequest(email, password, login))
+            }
         }
     }
 }

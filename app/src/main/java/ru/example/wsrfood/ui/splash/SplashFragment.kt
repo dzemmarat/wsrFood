@@ -1,5 +1,7 @@
 package ru.example.wsrfood.ui.splash
 
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
@@ -24,8 +26,12 @@ class SplashFragment : BaseFragment<SplashViewModel, FragmentSplashBinding>() {
         FragmentSplashBinding.inflate(inflater, container, false)
 
     override fun setupViews() {
-        if (!requireContext().isOnline())
+        if (!requireContext().isOnline()) {
             binding.progressBar.gone()
+            Handler(Looper.getMainLooper()).postDelayed({
+                findNavController().navigate(R.id.action_splashFragment_to_mainFragment)
+            }, 1000)
+        }
 
         viewModel.setupDatabase(requireContext())
         viewModel.getVersion()

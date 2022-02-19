@@ -4,18 +4,19 @@ import android.content.Context
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.room.Room
-import ru.example.wsrfood.data.network.NetworkService
-import ru.example.wsrfood.data.network.api.FoodApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
-import ru.example.wsrfood.data.db.FoodDatabase
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import ru.example.wsrfood.data.db.FoodDatabaseObject
 import ru.example.wsrfood.data.db.dao.FoodDao
-import java.lang.Exception
+import ru.example.wsrfood.data.models.remote.TokenResponse
+import ru.example.wsrfood.data.network.NetworkService
+import ru.example.wsrfood.data.network.api.FoodApi
 
-open class BaseViewModel: ViewModel() {
+open class BaseViewModel : ViewModel() {
 
     var api: FoodApi = NetworkService.retrofitService()
     protected lateinit var dao: FoodDao
@@ -39,6 +40,26 @@ open class BaseViewModel: ViewModel() {
                 e.message?.let { Log.e("Error", it) }
                 flow.value = Event.error(e.message)
             }
+        }
+    }
+
+    fun <T> postRequestWithMutableFlow(
+        flow: MutableStateFlow<Event<T>>,
+        request: suspend () -> Call<T>
+    ) {
+        viewModelScope.launch {
+            request().enqueue(object : Callback<T> {
+                override fun onResponse(
+                    call: Call<T>,
+                    response: Response<T>
+                ) {
+                    flow.value = Event.success(response.body())
+                }
+
+                override fun onFailure(call: Call<T>, t: Throwable) {
+                    flow.value = Event.error(t.message)
+                }
+            })
         }
     }
 
