@@ -6,14 +6,12 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.wajahatkarim3.easyvalidation.core.view_ktx.validator
 import ru.example.wsrfood.R
-import ru.example.wsrfood.databinding.FragmentOnboardingOneBinding
 import ru.example.wsrfood.databinding.FragmentSignUpBinding
 import ru.example.wsrfood.ui.core.BaseFragment
-import ru.example.wsrfood.viewmodel.core.EmptyViewModel
+import ru.example.wsrfood.viewmodel.core.Status
 import ru.example.wsrfood.viewmodel.signup.SignUpViewModel
-import java.util.regex.Pattern
 
-class SignUp: BaseFragment<SignUpViewModel, FragmentSignUpBinding>() {
+class SignUp : BaseFragment<SignUpViewModel, FragmentSignUpBinding>() {
 
     override val viewModel: SignUpViewModel by viewModels()
 
@@ -51,6 +49,23 @@ class SignUp: BaseFragment<SignUpViewModel, FragmentSignUpBinding>() {
                     .check()
 
                 if (!viewModel.isValid) showErrorDialog("Проверьте правильность заполнения полей")
+                else {
+                    viewModel.postRegister(
+                        tietEmail.text.toString(),
+                        tietPassword.text.toString(),
+                        tietFullName.text.toString()
+                    )
+                    observeResponse(viewModel.authRequest) {
+                        when (it.status) {
+                            Status.SUCCESS -> {
+                                findNavController().navigate(R.id.action_signUp_to_mainFragment)
+                            }
+                            Status.ERROR -> {
+                                showErrorDialog()
+                            }
+                        }
+                    }
+                }
             }
 
             btnCancel.setOnClickListener { findNavController().navigate(R.id.action_signUp_to_signIn) }
