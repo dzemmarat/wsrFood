@@ -49,7 +49,7 @@ class SplashViewModel : BaseViewModel() {
     fun insertDishesInDb() {
         viewModelScope.launch {
             (_dishes.value.data as List<DishResponse>).forEach {
-                dao.setFood(it.toEntity())
+                dao.setDishes(it.toEntity())
             }
         }
     }

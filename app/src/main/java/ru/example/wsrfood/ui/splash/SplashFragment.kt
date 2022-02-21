@@ -26,14 +26,15 @@ class SplashFragment : BaseFragment<SplashViewModel, FragmentSplashBinding>() {
         FragmentSplashBinding.inflate(inflater, container, false)
 
     override fun setupViews() {
+        viewModel.setupDatabase(requireContext())
+
         if (!requireContext().isOnline()) {
             binding.progressBar.gone()
             Handler(Looper.getMainLooper()).postDelayed({
                 findNavController().navigate(R.id.action_splashFragment_to_mainFragment)
-            }, 1000)
+            }, 2000)
         }
 
-        viewModel.setupDatabase(requireContext())
         viewModel.getVersion()
 
         observeVersions()

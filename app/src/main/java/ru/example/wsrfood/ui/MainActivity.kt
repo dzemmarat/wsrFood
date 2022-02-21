@@ -4,8 +4,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupWithNavController
 import ru.example.wsrfood.R
 import ru.example.wsrfood.databinding.ActivityMainBinding
+import ru.example.wsrfood.extensions.gone
+import ru.example.wsrfood.extensions.visible
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,5 +25,15 @@ class MainActivity : AppCompatActivity() {
         if (navHostFragment != null) {
             navController = navHostFragment.findNavController()
         }
+
+        binding.bottomNavigationView.setupWithNavController(navController)
+    }
+
+    fun showBottomMenu() {
+        binding.bottomNavigationView.visible()
+    }
+
+    fun hideBottomMenu() {
+        binding.bottomNavigationView.gone()
     }
 }

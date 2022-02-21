@@ -57,4 +57,19 @@
         android:name="ru.example.wsrfood.ui.main.MainFragment"
         android:label="MainFragment"
         tools:layout="@layout/fragment_main"/>
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="ru.example.wsrfood.ui.cart.CartFragment"
+        android:label="CartFragment"
+        tools:layout="@layout/fragment_cart"/>
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="ru.example.wsrfood.ui.history.HistoryFragment"
+        android:label="HistoryFragment"
+        tools:layout="@layout/fragment_history"/>
+    <fragment
+        android:id="@+id/personFragment"
+        android:name="ru.example.wsrfood.ui.person.PersonFragment"
+        android:label="PersonFragment"
+        tools:layout="@layout/fragment_person"/>
 </navigation>

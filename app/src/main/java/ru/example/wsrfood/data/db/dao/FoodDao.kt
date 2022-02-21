@@ -10,7 +10,10 @@ import ru.example.wsrfood.data.db.entity.VersionsEntity
 @Dao
 interface FoodDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun setFood(dish: DishEntity)
+    suspend fun setDishes(dish: DishEntity)
+
+    @Query("SELECT * FROM dish")
+    suspend fun getDishes(): MutableList<DishEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun setVersions(versions: VersionsEntity)
